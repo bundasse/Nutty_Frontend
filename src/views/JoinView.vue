@@ -1,38 +1,65 @@
 <template>
-<div class="w-full h-full flex items-center justify-center flex-wrap py-20">
-    <div class="mx-auto w-10/12 lg:w-7/12 flex items-center flex-wrap">
-      <div class="h-5 bg-gray-300 basis-full relative rounded-lg">
-        <div class="absolute rounded-lg h-5 bg-blue-500 transition-all duration-500" :style="{width: progress+'%'}"></div>
-        <!-- 만약 현재 문제를 진행중이라면 x/전체 문제수 로 표시되고, 그게 아니라면 종료되었으므로 다른 메세지를 보여준다. -->
-        <p v-if="current != Number(MaxCount)" class="absolute right-2 -top-5 text-xs">{{ current+1 }} / {{ MaxCount }}</p>
-        <p v-else class="absolute right-2 -top-5 text-xs">종료</p>
-        <p class="absolute right-2 top-0.5 text-xs">{{ progress+"%" }}</p>
+  <section>
+      <div class="my-20 flex flex-col gap-y-5 w-96 mx-auto">
+          <input type="text" placeholder="닉네임" v-model="nickname" class="py-3 px-5 border-[#a1a1a1] border">
+          <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
+          <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
+          <input type="password" placeholder="비밀번호 확인" v-model="passwordChk" class="py-3 px-5 border-[#a1a1a1] border">
+          <div class="flex items-center gap-2 px-4 mt-5"><input type="checkbox" v-model="checked"><span class="text-xs">
+                  이용 약관에 동의 해주세요</span></div>
+          <button class="bg-amber-600 text-white hover:bg-amber-500 text-2xl py-4 font-bold border-black border" @click="signUp">회원가입</button>
+          <router-link to="/login">
+              <p class="text-[#a6a6a6] text-xs text-right">이미 회원계정이 있으신가요?</p>
+          </router-link>
       </div>
-      <!-- 문제영역 -->
-      <div v-if="current < Number(MaxCount)" class="basis-full bg-white rounded-lg my-10 p-10" >
-        <p class="text-2xl text-center" v-html="this.dataList.QuizList[current].question"></p>
-        <ul class="flex flex-wrap justify-between mt-10">
-          <li v-for="(e,index) in randomView[current]" :key="index" class="cursor-pointer text-xl text-center font-bold px-5 py-20 basis-full lg:basis-[49%] rounded-lg border hover:bg-blue-500 transition-all duration-200 hover:text-white" @click="current++; SelectValue(e);">
-            <span v-html="e[1].text"></span>
-          </li>
-        </ul>
-      </div>
-      <div v-else class="basis-full bg-white rounded-lg my-10 p-10 text-center font-bold text-lg">
-        <p>
-          당신은 <span class="text-blue-500">{{result}}</span>타입 입니다.
-        </p>
-        <h2 class="text-7xl font-extrabold">57%</h2>
-        <p>NUTTY에서 {{result}}인 사람은 이만큼 있어요!</p>
-      </div>
-    </div>
-  </div>
+  </section>
 </template>
-<script>
-export default {
-    name: "JoinView",
 
+<script>
+import axios from 'axios'
+export default {
+  name: "JoinView",
+  data() {
+      return {
+          email: "",
+          mbti: this.$store.state.mbti,
+          password: "",
+          nickname: "",
+          errorMsg: "",
+          passwordChk: "",
+          checked: false
+      }
+  },
+  methods: {
+      signUp() {
+          const inputList = [this.nickname, this.email, this.password, this.passwordChk];
+          const isInputEmpty = inputList.some(input => input === '');
+          // input에 빈값체크
+          if (this.checked) {
+              if (this.password === this.passwordChk && this.password !== '') {
+                axios.post(`http://175.45.205.235:8080/v1/api/signup`,{
+                    "mbti": this.mbti,
+                    "email": this.email,
+                    "userName": this.userName,
+                    "password": this.password
+                }).then((result) => { result
+                  }).catch(function(error) {console.log(error) })
+                  this.$store.commit('UpdateDisplayName',  this.nickname)
+                  localStorage.setItem("displayName", this.nickname)
+                  alert("▶ 회원이 되신 것을 축하드립니다 ◀")
+                  this.$router.push('/') 
+                  
+              } else if (this.password !== this.passwordChk) {
+                  alert('비밀번호가 일치하지 않습니다.')
+              } else if (isInputEmpty) {
+                  alert('작성이 완료되지 않았습니다.')
+              }
+          }else{
+              alert('이용약관에 동의해주세요')
+          } 
+      },
+  }
 }
 </script>
-<style>
-    
-</style>
+
+<style lang="scss" scoped></style>

@@ -3,7 +3,7 @@
     <NavPage />
     <router-view/>
   </div>
-  <div class="min-h-screen h-full box-border">
+  <div v-if="this.$route.path === '/' && this.$store.state.loginToken === ''" class="min-h-screen h-full box-border">
     <TestPage/>
   </div>
 </template>

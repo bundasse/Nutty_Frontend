@@ -1,5 +1,5 @@
 <template>
-<div class="w-full h-full flex items-center justify-center flex-wrap py-20">
+<div class="w-full h-full flex items-center justify-center flex-wrap pt-28">
     <div class="mx-auto w-10/12 lg:w-7/12 flex items-center flex-wrap">
       <div class="h-5 bg-gray-300 basis-full relative rounded-lg">
         <div class="absolute rounded-lg h-5 bg-blue-500 transition-all duration-500" :style="{width: progress+'%'}"></div>
@@ -21,9 +21,9 @@
         <p>
           당신은 <span class="text-blue-500">{{result}}</span>타입 입니다.
         </p>
-        <h2 class="text-7xl font-extrabold">57%</h2>
+        <h2 class="text-9xl font-extrabold my-10">57%</h2>
         <p>NUTTY에서 {{result}}인 사람은 이만큼 있어요!</p>
-        <router-link to="/join"></router-link>
+        <router-link to="/join" @click="this.$store.state.mbti = result">회원가입</router-link>
       </div>
     </div>
   </div>

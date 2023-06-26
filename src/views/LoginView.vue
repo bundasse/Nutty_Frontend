@@ -28,7 +28,8 @@
   </template>
   
   <script>
-  import axios from 'axios'
+  import axios from 'axios';
+  import store from '@/store/index.js';
   export default {
     name: "LoginView",
     data() {
@@ -57,8 +58,10 @@
             }).then(function(user){
               localStorage.setItem("refreshToken", user.data.refreshToken)
               if (user.data.refreshToken) {
-                this.$store.commit("loginToken", { refreshToken: user.data.refreshToken, loginToken: user.data.accessToken })
+                store.commit("loginToken", { refreshToken: user.data.refreshToken, loginToken: user.data.accessToken })
               }
+              alert("로그인 성공")
+              this.$router.push('/') 
               }).catch((error)=>{console.log(error)})
           console.log("!")
         }

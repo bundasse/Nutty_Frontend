@@ -23,16 +23,53 @@
         </p>
         <h2 class="text-7xl font-extrabold">57%</h2>
         <p>NUTTY에서 {{result}}인 사람은 이만큼 있어요!</p>
+        <router-link to="/join"></router-link>
       </div>
     </div>
   </div>
 </template>
 <script>
+import QuizList from "../assets/QuizList.json"
 export default {
-    name: "JoinView",
-
+    name:"TestPage",
+    data() {
+        return {
+            dataList: QuizList,
+            current: 0,
+            userSelect: [],
+            MaxCount:5
+        }
+    },
+    methods: {
+    SelectValue(e){
+      this.userSelect.push(e[1].type)
+    },
+    questionCount(){
+      this.MaxCount = this.dataList.QuizList.length
+    }
+  },
+  computed:{
+    progress(){
+      return Math.floor((this.current / Number(this.MaxCount))*100);
+    },
+    result(){
+      if(this.userSelect.filter(e => e === "F").length > 2 ){
+        return "F"
+      }else{
+        return "T"
+      }
+    },
+    randomView(){
+      return this.dataList.QuizList.map((e,index)=>{
+        return Object.entries(this.dataList.QuizList[index].view).sort(()=> Math.random()-0.5)
+      })
+    }
+  },
+  created() {
+    this.questionCount();
+  },
 }
 </script>
-<style>
+<style lang="">
     
 </style>

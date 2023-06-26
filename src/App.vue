@@ -4,20 +4,20 @@
     <router-view/>
   </div>
   <div class="min-h-screen h-full box-border">
-    <JoinView/>
+    <TestPage/>
   </div>
 </template>
 <script>
 import NavPage from '@/components/NavPage.vue'
-import JoinView from '@/views/JoinView.vue'
+import TestPage from '@/components/TestPage.vue'
 export default {
   name:"MainHome",
   components:{
     NavPage,
-    JoinView
+    TestPage
   }
 }
 </script>
-<style lang="">
+<style>
   
 </style>

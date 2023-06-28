@@ -4,16 +4,35 @@ export default createStore({
   state: {
     mbti: "",
     loginChk:false,
-    loginToken:"",
-    refreshToken:""
+    loginToken:null,
+    refreshToken:"",
+    displayName:"",
+    email: ""
   },
   getters: {
   },
   mutations: {
+    loginState(state, payload) {
+      state.displayName = payload.displayName
+      state.loginToken = payload.refreshToken
+      state.loginChk = true
+    },
     loginToken(state, payload) {
       state.refreshToken = payload.refreshToken
       state.loginChk = true
       state.loginToken = payload.accessToken
+    },
+    userData(state,payload){
+      state.email = payload.email
+      state.displayName = payload.userName
+      state.mbti = payload.mbti
+    },
+    logOutToken(state) {
+      state.loginChk = false,
+      state.loginToken = null,
+      state.displayName = "",
+      localStorage.removeItem("refreshToken")
+      localStorage.removeItem("displayName")
     },
   },
   actions: {

@@ -1,0 +1,20 @@
+{
+    "Nav": [
+      [
+        "TOP 10",
+        "인기 게시글",
+        "카테고리"
+      ],
+      [
+        "/products",
+        "/community",
+        "/cs"
+      ]
+    ],
+    "SubMenu" : [
+      "SF/판타지","공포/스릴러","로맨스","자유"
+    ],
+    "SubLink" : [
+      "/events","/recipes","/articles","/free"
+    ]
+  }

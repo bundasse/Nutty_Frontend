@@ -25,6 +25,12 @@
           </div>
         </div>
       </div> -->
+      <!-- axios.get(`http://175.45.205.235:8080/v1/api/info`,{
+            "email":this.email,
+            "password":this.password
+            }).then(function(user){
+              store.commit("userData", { email: user.data.email, mbti: user.data.mbti, userName: user.data.userName})
+            }) -->
   </template>
   
   <script>
@@ -63,7 +69,6 @@
               alert("로그인 성공")
               this.$router.push('/') 
               }).catch((error)=>{console.log(error)})
-          console.log("!")
         }
       },
     },

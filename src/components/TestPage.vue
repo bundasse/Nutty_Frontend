@@ -1,21 +1,18 @@
 <template>
-<div class="w-full h-full flex items-center justify-center flex-wrap pt-28">
-    <div class="mx-auto w-10/12 lg:w-7/12 flex items-center flex-wrap">
-      <div class="h-5 bg-gray-300 basis-full relative rounded-lg">
-        <div class="absolute rounded-lg h-5 bg-blue-500 transition-all duration-500" :style="{width: progress+'%'}"></div>
-        <!-- 만약 현재 문제를 진행중이라면 x/전체 문제수 로 표시되고, 그게 아니라면 종료되었으므로 다른 메세지를 보여준다. -->
-        <p v-if="current != Number(MaxCount)" class="absolute right-2 -top-5 text-xs">{{ current+1 }} / {{ MaxCount }}</p>
-        <p v-else class="absolute right-2 -top-5 text-xs">종료</p>
-        <p class="absolute right-2 top-0.5 text-xs">{{ progress+"%" }}</p>
-      </div>
+<div class="w-screen h-full flex items-center justify-center flex-wrap">
       <!-- 문제영역 -->
-      <div v-if="current < Number(MaxCount)" class="basis-full bg-white rounded-lg my-10 p-10" >
-        <p class="text-2xl text-center" v-html="this.dataList.QuizList[current].question"></p>
-        <ul class="flex flex-wrap justify-between mt-10">
-          <li v-for="(e,index) in randomView[current]" :key="index" class="cursor-pointer text-xl text-center font-bold px-5 py-20 basis-full lg:basis-[49%] rounded-lg border hover:bg-blue-500 transition-all duration-200 hover:text-white" @click="current++; SelectValue(e);">
-            <span v-html="e[1].text"></span>
-          </li>
-        </ul>
+      <div v-if="resultView === false" class="w-full min-w-screen">
+        <div class="w-full min-h-screen h-full box-border bg-amber-500 flex items-center flex-wrap border relative" v-for="(e,index) in dataList.QuizList" :key="index">
+          <p class="basis-full text-2xl text-center z-10" v-html="e.question"></p>
+          <ul class="basis-full group">
+            <li v-for="(e,index) in randomView[index]" :key="index" :class="[index%2 === 0? 'left-0':'right-0', selectedIndex !== index? 'blur-sm':'blur-0']" @mouseover="selectedIndex = index" @mouseleave="selectedIndex =null" class="absolute w-1/2 top-0 cursor-pointer h-full min-h-screen text-xl text-center pt-96 hover:bg-amber-300 transition-all duration-200">
+              <span v-html="e[1].text"></span>
+            </li>
+          </ul>
+          <div v-if="index === 4" class="basis-full flex justify-center z-10">
+            <button @click="resultView = true" class=" my-10 p-5 text-center rounded border hover:bg-white">결과보기</button>
+          </div>
+        </div>
       </div>
       <div v-else class="basis-full bg-white rounded-lg my-10 p-10 text-center font-bold text-lg">
         <p>
@@ -25,7 +22,6 @@
         <p>NUTTY에서 {{result}}인 사람은 이만큼 있어요!</p>
         <router-link to="/join" @click="this.$store.state.mbti = result">회원가입</router-link>
       </div>
-    </div>
   </div>
 </template>
 <script>
@@ -37,7 +33,9 @@ export default {
             dataList: QuizList,
             current: 0,
             userSelect: [],
-            MaxCount:5
+            MaxCount:5,
+            resultView: false,
+            selectedIndex : null
         }
     },
     methods: {

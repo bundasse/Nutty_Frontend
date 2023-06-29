@@ -3,13 +3,10 @@
     <NavPage />
     <router-view/>
   </div>
-  <div v-if="this.$route.path === '/' && this.$store.state.loginToken === null" class="min-h-screen h-full box-border">
-    <TestPage/>
-  </div>
+
 </template>
 <script>
 import NavPage from '@/components/NavPage.vue'
-import TestPage from '@/components/TestPage.vue'
 import axios from 'axios'
 export default {
   name:"MainHome",
@@ -27,7 +24,7 @@ export default {
   },
   components:{
     NavPage,
-    TestPage
+
   }
 }
 </script>

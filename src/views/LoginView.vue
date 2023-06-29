@@ -1,5 +1,5 @@
 <template>
-      <div class="mt-20 flex flex-col gap-y-5 w-96 mx-auto">
+      <div class="mt-96 flex flex-col gap-y-5 w-96 mx-auto">
         <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
         <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border" @keyup.enter="login">
         <button class="bg-amber-600 hover:bg-point text-white hover:bg-amber-500 text-2xl py-4 font-bold border-black border" @click="login">로그인</button>

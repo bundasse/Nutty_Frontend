@@ -29,9 +29,6 @@ export default {
   components: {
     TestPage
   },methods: {
-      SelectValue(el,i){
-        this.userSelect[i] = el.type
-      },
       calculateSectionOffsets() {
       let sections = document.getElementsByTagName('section');
       let length = sections.length;

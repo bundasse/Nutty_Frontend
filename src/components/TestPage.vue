@@ -41,6 +41,11 @@ export default {
             resultView: false,
         }
     },
+    methods: {
+      SelectValue(el,i){
+        this.userSelect[i] = el.type
+      },
+    },
     computed:{
       result(){
         if(this.userSelect.filter(e => e === "F").length > 2 ){

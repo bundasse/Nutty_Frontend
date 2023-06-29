@@ -1,9 +1,9 @@
 <template>
-  <section class="w-full h-full min-h-screen pt-32">
+  <section class="w-full h-full min-h-screen pt-32 bg-nutty">
     <h2 class="text-9xl font-bold text-center">NUTTY?</h2>
     <p class="text-xl text-center w-30 mt-20">너티는<br/>솰라솰라<br/>이렇고저런<br/>재미있는<br/>서비스입니다.</p>
   </section>
-  <div v-if="this.$route.path === '/' && this.$store.state.loginToken === null" class="min-h-screen h-full box-border">
+  <div v-if="this.$route.path === '/' && this.$store.state.loginToken === null" class="min-h-screen h-full box-border bg-nutty">
     <TestPage/>
     <ul class="sections-menu fixed right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-5 items-center">
       <li class="rounded-full bg-white menu-point" v-for="(offset, ind) in offsets" :key="ind" :class="activeSection == ind? 'w-6 h-6 opacity-100' : 'w-3 h-3 opacity-80'" @click="scrollToSection(ind)" v-title="'Go to section ' + (ind+1)"></li>

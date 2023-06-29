@@ -1,9 +1,8 @@
 <template>
-  <div class="min-h-screen h-full box-border bg-nutty">
+  <div class="min-h-screen h-full box-border">
     <NavPage />
     <router-view/>
   </div>
-
 </template>
 <script>
 import NavPage from '@/components/NavPage.vue'

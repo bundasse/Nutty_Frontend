@@ -32,11 +32,21 @@ export default {
                 alert('제목과 내용이 입력되지 않았습니다.')
             }else{
                 const today = new Date()
-                const data = {'category':this.category,'title':this.title,'description':this.description,'createDate':today}
+                const data = {
+                    "category": this.category,
+                    "title": this.title,
+                    "description": this.description,
+                    "createDate": today}
+                    console.log(data)
                 //게시물 데이터를 data에 담는다
                 //axios.post('주소',data,{header에 보낼거})
-                axios.post('http://175.45.205.235:8080/v1/api/notice', data,
-                    {'headers': {'ACCESS_TOKEN' : this.$store.state.loginToken, 'REFRESH_TOKEN' :  this.$store.state.refreshToken}}
+                axios.post('http://175.45.205.235:8080/v1/api/notice', JSON.stringify(data),
+                    {headers: 
+                        {
+                            "ACCESS_TOKEN" : this.$store.state.loginToken,
+                            "REFRESH_TOKEN" :  this.$store.state.refreshToken
+                        }
+                    }
             ).then(this.$router.push('/board')).catch((error)=>{console.log(error)})
             }
         }

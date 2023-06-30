@@ -14,7 +14,8 @@ export default createStore({
   mutations: {
     loginState(state, payload) {
       state.displayName = payload.displayName
-      state.loginToken = payload.refreshToken
+      state.loginToken = payload.accessToken
+      state.refreshToken = payload.refreshToken
       state.loginChk = true
     },
     loginToken(state, payload) {
@@ -30,8 +31,10 @@ export default createStore({
     logOutToken(state) {
       state.loginChk = false,
       state.loginToken = null,
+      state.refreshToken = '',
       state.displayName = "",
       localStorage.removeItem("refreshToken")
+      localStorage.removeItem("accessToken")
       localStorage.removeItem("displayName")
     },
   },

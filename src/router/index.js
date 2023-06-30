@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import JoinView from '../views/JoinView.vue'
 import LoginView from '../views/LoginView.vue'
+import BoardView from '../views/board/BoardView.vue'
 
 const routes = [
   {
@@ -27,6 +28,23 @@ const routes = [
     name: 'login',
     component: LoginView
   },
+  { path: '/board',
+    name:'board',
+    component: BoardView,
+    redirect: '/board/list',
+    children:[
+      {
+        path:'/board/list',
+        name:'boardlist',
+        component: () => import('../views/board/BoardList.vue')
+      },
+      {
+        path:'/board/write',
+        name:'boardwrite',
+        component: () => import('../views/board/BoardWrite.vue')
+      }
+    ]
+  }
 ]
 
 const router = createRouter({

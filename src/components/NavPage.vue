@@ -41,6 +41,8 @@ export default {
             isSubOpen: false,
         }
     },
+    mounted() {
+    },
     methods: {
         logOut(){
             this.$store.commit("logOutToken")

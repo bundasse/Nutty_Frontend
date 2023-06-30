@@ -4,50 +4,50 @@
         "id" : 1,
         "question" : "&ldquo;나 오늘 피곤해서 드라이 샴푸 하고 왔어&rdquo;",
         "view" : [
-            {"text":"&ldquo;어제 많이 힘들었나보네? 늦게 잤어?&rdquo;",
-            "type":"F"},
-            {"text":"&ldquo;드라이샴푸 어때? 편해?&rdquo;",
-            "type":"T"}
+          {"text":"&ldquo;드라이 샴푸 어때? 편해?&rdquo;",
+          "type":"T"},
+          {"text":"&ldquo;어제 많이 힘들었나 보네? 늦게 잤어?&rdquo;",
+          "type":"F"}
         ]
       },
       {
         "id" : 2,
         "question" : "아프다는 말에 &ldquo;병원을 가.&rdquo; 라고 한다면?",
         "view" : [
-            {"text":"&lsquo;내가 의사야? 징징거리지 말고 병원가서 알아서 해!&rsquo; 라는 뜻인가?ㅠ",
-            "type":"F"},
-            {"text":"병원 가기 귀찮은데... 진짜 가야 하나?",
-            "type":"T"}
+          {"text":"병원 가기 귀찮은데... 진짜 가야 하나?",
+          "type":"T"},
+          {"text":"&lsquo;내가 의사야? 징징거리지 말고 병원가서 알아서 해!&rsquo; 라는 뜻인가?ㅠ",
+          "type":"F"}
         ]
       },
       {
         "id" : 3,
-        "question" : "&ldquo;나 힘들어서 아이패드 샀어.&rdquo;",
+        "question" : "&ldquo;나 너무 스트레스 쌓여서 뭐 하나 샀어.&rdquo;",
         "view" : [
-            {"text":"&lsquo;뭐가 힘들었지?&rsquo;",
-            "type":"F"},
-            {"text":"&lsquo;아이패드를 왜 샀지?&rsquo;",
-            "type":"T"}
+          {"text":"&lsquo;어떤 걸 샀을까?&rsquo;",
+          "type":"T"},
+          {"text":"&lsquo;무슨 일이 그렇게 힘들었을까?&rsquo;",
+          "type":"F"}
         ]
       },
       {
         "id" : 4,
         "question" : "&ldquo;난 네가 제일 좋아!&rdquo;",
         "view" : [
-            {"text":"&lsquo;감동이네ㅠㅠ&rsquo;",
-            "type":"F"},
-            {"text":"&lsquo;뭐지..? 갑자기 왜? 부탁할게 있나?&rsquo;",
-            "type":"T"}
+          {"text":"&lsquo;뭐지..? 갑자기 왜? 부탁할게 있나?&rsquo;",
+          "type":"T"},
+          {"text":"&lsquo;감동이네ㅠㅠ&rsquo;",
+          "type":"F"}
         ]
       },
       {
         "id" : 5,
         "question" : "&ldquo;NUTTY 엄청 재밌대! 해볼래?&rdquo;",
         "view" : [
-            {"text":"&ldquo;아 진짜? 그래! 뭐 하는 건데?&rdquo;",
-            "type":"F"},
-            {"text":"&ldquo;그게 뭔데?&rdquo;",
-            "type":"T"}
+          {"text":"&ldquo;그게 뭔데?&rdquo;",
+          "type":"T"},
+          {"text":"&ldquo;아 진짜? 그래! 뭐 하는 건데?&rdquo;",
+          "type":"F"}
         ]
       }
     ]

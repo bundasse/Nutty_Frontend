@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full min-h-screen relative">
       <!-- 문제영역 -->
-      <div v-if="resultView === false" class="w-full min-w-screen">
+      <div class="w-full min-w-screen">
           <section class="w-full min-h-screen h-full section flex flex-col pt-20 bg-nutty relative" v-for="(e,i) in dataList.QuizList" :key="i" :ref="'page-'+i">
             <p class="text-center z-20">문제 {{ i }} 번</p>
             <h3 class="text-5xl text-center mt-20 font-bold notoserif z-20" v-html="e.question"></h3>
@@ -11,21 +11,9 @@
               </li>
             </ul>
             <div v-if="i === 4" class="flex justify-center z-10 mt-80">
-              <button @click="resultView = true" class=" my-10 px-5 py-3 text-center rounded bg-yellow-200 hover:bg-white">제 생각에 당신의 성향은요...</button>
+              <button @click="resultView()" class=" my-10 px-5 py-3 text-center rounded bg-yellow-200 hover:bg-white">제 생각에 당신의 성향은요...</button>
             </div>
           </section>
-      </div>
-      <div v-else class="w-full min-h-screen h-full text-center font-bold text-lg bg-nutty flex items-center flex-wrap">
-        <div class="basis-full">      
-          <p>
-            당신은 <span class="text-white">{{result}}</span>타입 입니다.
-          </p>
-          <h2 class="text-9xl font-extrabold my-10">57%</h2>
-          <p>NUTTY에서 {{result}}인 사람은 이만큼 있어요!</p>
-          <div class="w-full text-center mt-20">
-            <router-link to="/join" @click="this.$store.state.mbti = result" class="hover:text-white">회원가입</router-link>
-          </div>
-        </div>
       </div>
   </div>
 </template>
@@ -37,14 +25,24 @@ export default {
         return {
             dataList: QuizList,
             current: 0,
-            userSelect: [],
-            resultView: false,
+            userSelect: ["","","","",""],
         }
     },
     methods: {
       SelectValue(el,i){
         this.userSelect[i] = el.type
+        console.log(this.userSelect)
       },
+      resultView(){
+        console.log(this.userSelect[1])
+        if(this.userSelect.filter(e => e === "").length > 1){
+          alert("아직 답변을 다 선택하지 않았어요!")
+        }else{
+          this.$store.state.mbti = this.result
+          this.$router.push('/join')
+        }
+        
+      }
     },
     computed:{
       result(){

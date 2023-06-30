@@ -6,19 +6,19 @@
 </template>
 <script>
 import NavPage from '@/components/NavPage.vue'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   name:"MainHome",
   data() {
     return {
       displayName: localStorage.getItem("displayName"),
-      refreshToken: localStorage.getItem("refreshToken")
+      refreshToken: localStorage.getItem("refreshToken"),
+      accessToken: localStorage.getItem("accessToken")
     }
   },
   mounted() {
     if (localStorage.getItem("refreshToken")) {
-      this.$store.commit('loginState', { displayName: this.displayName, refreshToken: this.refreshToken })
-      axios.get(`http://175.45.205.235:8080/v1/api/info`)
+      this.$store.commit('loginState', { displayName: this.displayName, refreshToken: this.refreshToken, accessToken: this.accessToken })
     }
   },
   components:{

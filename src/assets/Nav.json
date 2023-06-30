@@ -1,20 +1,18 @@
 {
     "Nav": [
       [
-        "TOP 10",
-        "인기 게시글",
-        "카테고리"
+        "게시글 보기",
+        "T/F 맞추기"
       ],
       [
-        "/products",
-        "/community",
-        "/cs"
+        "/board",
+        "/TFquiz"
       ]
     ],
     "SubMenu" : [
       "SF/판타지","공포/스릴러","로맨스","자유"
     ],
     "SubLink" : [
-      "/events","/recipes","/articles","/free"
+      "fantasy","horror","romance","free"
     ]
   }

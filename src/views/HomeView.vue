@@ -20,10 +20,10 @@ export default {
   data() {
     return {
       inMove: false,
-            inMoveDelay: 400,
-            activeSection: 0,
-            offsets: [],
-            touchStartY: 0
+      inMoveDelay: 400,
+      activeSection: 0,
+      offsets: [],
+      touchStartY: 0
     }
   },
   components: {

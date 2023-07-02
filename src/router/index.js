@@ -1,22 +1,29 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import MainView from '../views/MainView.vue'
 import JoinView from '../views/JoinView.vue'
 import LoginView from '../views/LoginView.vue'
-import BoardView from '../views/board/BoardView.vue'
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'home',
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/',
+    name: 'main',
+    component: MainView
+  },
+  {
+    path: '/mypage',
+    name: 'mypage',
+    component: () => import('../views/MypageView.vue')
+  },
+  {
+    path: '/TFquiz',
+    name: 'TFquiz',
+    component: () => import('../views/QuizView.vue')
   },
   {
     path: '/join',
@@ -30,20 +37,16 @@ const routes = [
   },
   { path: '/board',
     name:'board',
-    component: BoardView,
-    redirect: '/board/list',
-    children:[
-      {
-        path:'/board/list',
-        name:'boardlist',
-        component: () => import('../views/board/BoardList.vue')
-      },
-      {
-        path:'/board/write',
-        name:'boardwrite',
-        component: () => import('../views/board/BoardWrite.vue')
-      }
-    ]
+    component: () => import('../views/board/BoardList.vue')
+  },
+  { path: '/board/read/',
+    name:'boardread',
+    component: () => import('../views/board/BoardRead.vue')
+  },
+  {
+    path:'/write',
+    name:'boardwrite',
+    component: () => import('../views/board/BoardWrite.vue')
   }
 ]
 

@@ -1,44 +1,58 @@
 <template>
-  <section class="w-full h-full min-h-screen pt-32 bg-nutty relative">
-    <h2 class="text-9xl font-bold text-center">NUTTY?</h2>
-    <h4 class="text-3xl font-bold text-center mt-20">너와 나의 성격 차이, 글에서도 보일까?<br/>
-너와 나의 차이? NUTTY에서 느껴봐!</h4>
-    <p class="text-base text-center mt-10">내 세계를 넓혀주는 새로운 글.<br/>
-    내 마음에 스며드는 여운있는 글.<br/>
-    딱 찾아서 골라 읽고 싶다면… <br/>
-    NUTTY로 오세요!</p>
-    <div class="text-white text-center absolute bottom-10 w-full">
-      <span>너에 대해 알려줘!</span>
-      <img src="@/assets/arrow-down.png" class="w-10 h-10 mx-auto">
+    <section class="w-full h-full min-h-screen pt-20 box-border">
+        <h2 class="text-nutty-dark text-9xl font-extrabold text-center my-10">Nutty</h2>
+        <p class="text-nutty-dark text-center text-lg font-semibold">
+            Nutty는 MBTI(T/F) 성격에 따라 취향에 맞는 글을 추천해주고,<br/>
+            주제와 관련된 짧은 글을 올릴 수 있는 글쓰기 서비스 입니다.
+        </p>
+        <p class="text-center text-nutty-dark text-lg mt-20 font-semibold">인기 top 10</p>
+        <div class="w-full mt-5">
+            <swiper
+            :slidesPerView="3.5"
+            :spaceBetween="50"
+            :modules="modules"
+            class="mySwiper">
+            <swiper-slide v-for="(e,i) in datalist" :key="i" class="border rounded-md shadow-md">
+                <router-link :to="{ path: '/board/read' , query:{noticeId : e.noticeId}}" @click="$store.commit('boardRead',e.noticeId)" class="p-5">
+                    <span>{{ i+1 }}위</span>
+                    <h4 class="font-bold text-3xl">{{ e.title }}</h4>
+                    <p class="line-clamp-4">{{ e.description }}</p>
+                </router-link>
+            </swiper-slide>
+        </swiper>
+        </div>
+    </section>
+    <div class="min-h-screen h-full box-border">
+        <BoardWrite />
     </div>
-  </section>
-  <div class="min-h-screen h-full box-border bg-nutty">
-    <TestPage/>
-    <ul class="sections-menu fixed right-10 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-5 items-center">
-      <li class="rounded-full bg-white menu-point" v-for="(offset, ind) in offsets" :key="ind" :class="activeSection == ind? 'w-6 h-6 opacity-100' : 'w-3 h-3 opacity-80'" @click="scrollToSection(ind)" v-title="'Go to section ' + (ind+1)"></li>
-    </ul> 
-  </div>
 </template>
-
 <script>
-// import HelloWorld from '@/components/HelloWorld.vue'
-
-import TestPage from '@/components/TestPage.vue'
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/pagination';
+// import required modules
+import { Pagination } from 'swiper';
+import axios from 'axios';
+import BoardWrite from '@/views/board/BoardWrite.vue'
 export default {
-  name: 'HomeView',
-  data() {
-    return {
-      inMove: false,
+    name:'MainView',
+    data() {
+        return {
+            datalist:[],
+            inMove: false,
       inMoveDelay: 400,
       activeSection: 0,
       offsets: [],
       touchStartY: 0
-    }
-  },
-  components: {
-    TestPage
-  },methods: {
-      calculateSectionOffsets() {
+        }
+    },
+    components: {
+      Swiper,
+      SwiperSlide,
+      BoardWrite
+    },
+    methods: {
+        calculateSectionOffsets() {
       let sections = document.getElementsByTagName('section');
       let length = sections.length;
       
@@ -142,19 +156,24 @@ export default {
       this.touchStartY = 0;
       return false;
     }
-  },
-  mounted() {
-      this.calculateSectionOffsets();
-    
-    window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);  // Mozilla Firefox
-    window.addEventListener('mousewheel', this.handleMouseWheel, { passive: false }); // Other browsers
-    
-    window.addEventListener('touchstart', this.touchStart, { passive: false }); // mobile devices
-    window.addEventListener('touchmove', this.touchMove, { passive: false }); // mobile devices
-  },
-  /**
-   * destroyed() hook executes on page destroy and removes all registered event listeners
-   */
+    },
+    setup() {
+      return {
+        modules: [Pagination],
+      }
+    },
+    mounted() {
+        axios.get('http://175.45.205.235:8080/v1/api/notice/main').then((res)=>{
+            this.datalist = res.data.slice(0,9)
+        })
+        this.calculateSectionOffsets();
+        
+        window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);  // Mozilla Firefox
+        window.addEventListener('mousewheel', this.handleMouseWheel, { passive: false }); // Other browsers
+        
+        window.addEventListener('touchstart', this.touchStart, { passive: false }); // mobile devices
+        window.addEventListener('touchmove', this.touchMove, { passive: false }); // mobile devices
+    },
   unmounted() {
     window.removeEventListener('DOMMouseScroll', this.handleMouseWheelDOM); // Mozilla Firefox
     window.removeEventListener('mousewheel', this.handleMouseWheel, { passive: false });  // Other browsers
@@ -164,3 +183,6 @@ export default {
   }
 }
 </script>
+<style>
+    
+</style>

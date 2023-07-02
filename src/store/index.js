@@ -7,7 +7,8 @@ export default createStore({
     loginToken:null,
     refreshToken:"",
     displayName:"",
-    email: ""
+    email: "",
+    noticeId: null
   },
   getters: {
   },
@@ -37,6 +38,9 @@ export default createStore({
       localStorage.removeItem("accessToken")
       localStorage.removeItem("displayName")
     },
+    boardRead(state,payload){
+      state.noticeId = payload
+    }
   },
   actions: {
   },

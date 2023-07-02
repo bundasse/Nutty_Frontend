@@ -16,14 +16,20 @@ export default {
       accessToken: localStorage.getItem("accessToken")
     }
   },
+  methods: {
+   
+  },
   mounted() {
+    if(!localStorage.getItem("refreshToken")){
+      this.$router.push('/home')
+    }
     if (localStorage.getItem("refreshToken")) {
       this.$store.commit('loginState', { displayName: this.displayName, refreshToken: this.refreshToken, accessToken: this.accessToken })
     }
+    
   },
   components:{
     NavPage,
-
   }
 }
 </script>

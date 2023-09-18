@@ -1,6 +1,6 @@
 <template>
-    <section class="w-full h-full min-h-screen pt-20 box-border">
-        <h2 class="text-nutty-dark text-9xl font-extrabold text-center my-10">Nutty</h2>
+    <section class="w-full h-full min-h-screen pt-32 box-border">
+      <h2><img src="@/assets/logo_yellow.png" class="w-96 mx-auto"></h2>
         <p class="text-nutty-dark text-center text-lg font-semibold">
             Nutty는 MBTI(T/F) 성격에 따라 취향에 맞는 글을 추천해주고,<br/>
             주제와 관련된 짧은 글을 올릴 수 있는 글쓰기 서비스 입니다.
@@ -11,12 +11,16 @@
             :slidesPerView="3.5"
             :spaceBetween="50"
             :modules="modules"
+            :autoplay="{
+              delay: 2500,
+              pauseOnMouseEnter:true
+            }"
             class="mySwiper">
-            <swiper-slide v-for="(e,i) in datalist" :key="i" class="border rounded-md shadow-md">
-                <router-link :to="{ path: '/board/read' , query:{noticeId : e.noticeId}}" @click="$store.commit('boardRead',e.noticeId)" class="p-5">
+            <swiper-slide v-for="(e,i) in datalist" :key="i" class="border rounded-md shadow-md p-5">
+                <router-link :to="{ path: '/board/read' , query:{noticeId : e.noticeId}}" @click="$store.commit('boardRead',e.noticeId)">
                     <span>{{ i+1 }}위</span>
                     <h4 class="font-bold text-3xl">{{ e.title }}</h4>
-                    <p class="line-clamp-4">{{ e.description }}</p>
+                    <p class="line-clamp-4 mt-5">{{ e.description }}</p>
                 </router-link>
             </swiper-slide>
         </swiper>
@@ -27,12 +31,13 @@
     </div>
 </template>
 <script>
+ import BoardList from "@/assets/BoardList.json";
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/pagination';
 // import required modules
 import { Pagination } from 'swiper';
-import axios from 'axios';
+// import axios from 'axios';
 import BoardWrite from '@/views/board/BoardWrite.vue'
 export default {
     name:'MainView',
@@ -163,9 +168,10 @@ export default {
       }
     },
     mounted() {
-        axios.get('http://175.45.205.235:8080/v1/api/notice/main').then((res)=>{
-            this.datalist = res.data.slice(0,9)
-        })
+        // axios.get('http://175.45.205.235:8080/v1/api/notice/main').then((res)=>{
+        //     this.datalist = res.data.slice(0,9)
+        // })
+        this.datalist = BoardList.BoardList.slice(0,10)
         this.calculateSectionOffsets();
         
         window.addEventListener('DOMMouseScroll', this.handleMouseWheelDOM);  // Mozilla Firefox

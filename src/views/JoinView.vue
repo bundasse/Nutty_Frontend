@@ -10,18 +10,23 @@
             </div>
         </div>
     </section>
-    <section class="pt-80 flex flex-col gap-y-5 w-96 mx-auto">
-        <div>
-            <input type="text" placeholder="닉네임" v-model="nickname" class="py-3 px-5 border-[#a1a1a1] border">
-            <button @click="userNameTest">중복확인</button>
+    <section class="py-16 w-[450px] mx-auto">
+        <h2><img src="@/assets/logo.png" class="w-80 mx-auto mb-10"></h2>
+        <div class="w-[450px] flex flex-col gap-y-5">
+            <div class="w-full flex justify-between">
+                <input type="text" placeholder="닉네임" v-model="nickname" class="w-96 py-3 px-5 border-[#a1a1a1] border">
+                <button @click="userNameTest">중복확인</button>
+            </div>
             <span class="text-red-500" v-html="errorMsg"></span>
-            <input type="email" placeholder="이메일 주소" v-model="email" class="py-3 px-5 border-[#a1a1a1] border">
-            <input type="password" placeholder="비밀번호" v-model="password" class="py-3 px-5 border-[#a1a1a1] border">
-            <input type="password" placeholder="비밀번호 확인" v-model="passwordChk" class="py-3 px-5 border-[#a1a1a1] border">
-            <button class="bg-amber-600 text-white hover:bg-amber-500 text-2xl py-4 font-bold border-black border" @click="signUp">회원가입</button>
+            <input type="email" placeholder="이메일 주소" v-model="email" class="w-96 py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호" v-model="password" class="w-96 py-3 px-5 border-[#a1a1a1] border">
+            <input type="password" placeholder="비밀번호 확인" v-model="passwordChk" class="w-96 py-3 px-5 border-[#a1a1a1] border">
+            <button class="w-96 bg-amber-600 text-white hover:bg-amber-500 text-2xl py-4 font-bold border-black border" @click="signUp">회원가입</button>
+            <div class="w-96">
             <router-link to="/login">
-                <p class="text-[#a6a6a6] text-xs text-right">이미 회원계정이 있으신가요?</p>
+                <p class="text-[#a6a6a6] text-xs">이미 회원계정이 있으신가요?</p>
             </router-link>
+            </div>
         </div>
   </section>
 </template>

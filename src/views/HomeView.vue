@@ -1,6 +1,6 @@
 <template>
   <section class="w-full h-full min-h-screen pt-32 bg-nutty relative">
-    <h2 class="text-9xl font-bold text-center">NUTTY?</h2>
+    <h2><img src="@/assets/logo.png" class="w-96 mx-auto"></h2>
     <h4 class="text-3xl font-bold text-center mt-20">너와 나의 성격 차이, 글에서도 보일까?<br/>
 너와 나의 차이? NUTTY에서 느껴봐!</h4>
     <p class="text-base text-center mt-10">내 세계를 넓혀주는 새로운 글.<br/>

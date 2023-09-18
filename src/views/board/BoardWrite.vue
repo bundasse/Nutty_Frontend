@@ -2,9 +2,9 @@
     <section class="w-full h-full min-h-screen">
         <div class="max-w-7xl mx-auto flex justify-between pt-20 mb-5">
             <ul class="flex gap-x-3">
-                <li class="px-4 py-2 rounded-lg cursor-pointer border shadow-sm" :class="e.tag ===this.category && 'text-nutty'" v-for="e in catelist" :key="e" @click="category = e.tag">{{ e.name }}</li>
+                <li class="px-4 py-2 rounded-lg cursor-pointer border shadow-sm" :class="e.tag ===this.category && 'text-nutty font-bold'" v-for="e in catelist" :key="e" @click="category = e.tag">{{ e.name }}</li>
             </ul>
-            <button class="px-4 py-2 rounded-lg cursor-pointer border shadow-sm bg-[#DBFF00]" @click="write">작성 완료</button>
+            <button class="px-4 py-2 rounded-lg cursor-pointer border shadow-sm bg-[#DBFF00] hover:bg-[#A3EF00]" @click="write">작성 완료</button>
         </div>
         <div class="max-w-7xl mx-auto border shadow-md rounded-lg p-5">
             <input type="text" v-model="title" class="w-full border-b-2 text-3xl font-bold pb-5" placeholder="제목은 뭐가 좋을까?">

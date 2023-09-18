@@ -1,6 +1,6 @@
 <template>
     <div class="mt-20">
-        <div class="">
+        <div>
             <router-view></router-view>
         </div>
     </div>
@@ -24,10 +24,10 @@ export default {
       }
     },
     mounted() {
-        axios.get('http://175.45.205.235:8080/v1/api/notice/main').then((res)=>{
-            this.contentList = res.data
-            this.datalist = res.data.slice(0,9)
-        })
+        // axios.get('http://175.45.205.235:8080/v1/api/notice/main').then((res)=>{
+        //     this.contentList = res.data
+        //     this.datalist = res.data.slice(0,9)
+        // })
     },
 }
 </script>
